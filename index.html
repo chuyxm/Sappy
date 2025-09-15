@@ -5,16 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>SAPPY Token — Landing</title>
   <meta name="description" content="La memecoin tropical que nació en Nayarit. Be early. Be rich. Be SAPPY.">
-  <!-- Fuente sin instalar nada -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <link rel="icon" href="assets/logo.svg">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
     :root{
       --bg1:#0b1324; --bg2:#020617; --panel:#0f172a;
       --text:#eaf8f0; --muted:#a7b7c6;
       --brand1:#86efac; --brand2:#bef264; --brand3:#34d399;
-      --card:#0e1a2f; --border:#1f2c42; --ring:rgba(134,239,172,.35);
-      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --card:#0e1a2f; --border:#1f2c42;
+      --ring:rgba(134,239,172,.35);
+      --shadow: 0 16px 40px rgba(0,0,0,.35);
     }
     *{box-sizing:border-box}
     html,body{height:100%}
@@ -29,26 +29,26 @@
     a{color:var(--brand1); text-decoration:none}
     a:hover{text-decoration:underline}
     .container{max-width:1160px;margin:0 auto;padding:0 22px}
-    /* Header */
-    header{
-      position:sticky; top:0; z-index:1000;
-      backdrop-filter:saturate(160%) blur(8px);
-      background:rgba(10,18,36,.65);
-      border-bottom:1px solid rgba(134,239,172,.15);
+    .btn{
+      display:inline-flex;align-items:center;gap:.6rem;padding:.85rem 1.15rem;border-radius:16px;border:1px solid rgba(134,239,172,.35);
+      background:linear-gradient(90deg,var(--brand1),var(--brand2)); color:#062417; font-weight:800; box-shadow:0 12px 28px rgba(134,239,172,.2);
     }
+    .btn.ghost{background:transparent;color:var(--text);border-color:#2a3a51}
+    /* Header */
+    header{position:sticky; top:0; z-index:1000; backdrop-filter:saturate(160%) blur(8px); background:rgba(10,18,36,.65); border-bottom:1px solid rgba(134,239,172,.15)}
     .nav{display:flex;align-items:center;justify-content:space-between;min-height:70px}
     .brand{display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:.4px}
     .brand img{width:38px;height:38px}
     .brand span{background:linear-gradient(90deg,var(--brand1),var(--brand2));-webkit-background-clip:text;background-clip:text;color:transparent}
-    .menu a{margin:0 .75rem;color:#d9fbe7;font-weight:600;opacity:.9}
+    .menu{display:none;gap:12px;align-items:center}
+    .menu a{color:#d9fbe7;font-weight:600;opacity:.9}
     .menu a:hover{opacity:1}
-    .btn{
-      display:inline-flex;align-items:center;gap:.6rem;padding:.85rem 1.25rem;border-radius:16px;border:1px solid rgba(134,239,172,.35);
-      background:linear-gradient(90deg,var(--brand1),var(--brand2)); color:#062417; font-weight:800; box-shadow:0 12px 28px rgba(134,239,172,.2);
-    }
-    .btn.ghost{
-      background:transparent; color:var(--text); border-color:#2a3a51
-    }
+    .hamb{display:inline-flex;gap:8px;align-items:center;padding:.5rem .75rem;border:1px solid #274057;border-radius:12px;background:transparent;color:#e6f7ef}
+    @media(min-width:900px){.menu{display:flex}.hamb{display:none}}
+    /* mobile drawer */
+    .drawer{position:fixed;inset:0;background:rgba(3,6,12,.9);display:none;padding:24px}
+    .drawer.open{display:block}
+    .drawer .links{display:flex;flex-direction:column;gap:14px;margin-top:18px}
     /* Sections */
     section{padding:72px 0}
     h1{font-size:clamp(34px,5vw,56px);line-height:1.1;margin:12px 0 10px}
@@ -69,18 +69,46 @@
       .cols-3{grid-template-columns:repeat(3,1fr)}
       .cols-4{grid-template-columns:repeat(4,1fr)}
     }
-    .card{
-      background:linear-gradient(180deg, rgba(20,32,54,.8), rgba(12,22,40,.75));
-      border:1px solid var(--border); border-radius:20px; padding:20px; box-shadow:var(--shadow);
-    }
+    .card{background:linear-gradient(180deg, rgba(20,32,54,.8), rgba(12,22,40,.75)); border:1px solid var(--border); border-radius:20px; padding:20px; box-shadow:var(--shadow)}
     .metric{display:grid;place-items:center;padding:18px;border-radius:16px;background:rgba(20,32,54,.55);border:1px solid #21314a}
     .metric .k{font-size:1.25rem;font-weight:800}
+    /* List with check */
+    .list{padding-left:1.1rem;margin:.6rem 0 0}
+    .list li{margin:.4rem 0}
+    /* FAQ (details) */
+    details.faq{border:1px solid var(--border);border-radius:16px;background:rgba(18,28,48,.6);padding:.2rem .8rem}
+    details.faq summary{cursor:pointer;list-style:none;padding:1rem 0;font-weight:600}
+    details.faq[open]{outline:2px solid rgba(134,239,172,.25)}
     /* Footer */
     footer{border-top:1px solid var(--border);background:rgba(10,18,36,.6);padding:22px 0;color:#9bb0c3}
     footer .links a{color:#9bb0c3;margin-left:14px}
+    /* Icon pills */
+    .pill{display:inline-flex;align-items:center;gap:10px}
+    .icon{width:20px;height:20px;display:inline-block}
+    .logo{width:80px;height:80px}
+    .stat-card{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:center}
+    .stat-title{font-size:1.25rem;font-weight:800}
   </style>
 </head>
 <body>
+  <!-- Drawer mobile -->
+  <div id="drawer" class="drawer">
+    <div class="container">
+      <div style="display:flex;align-items:center;justify-content:space-between">
+        <div class="pill"><img src="assets/logo.svg" width="32" height="32" alt="SAPPY"><strong>SAPPY</strong></div>
+        <button class="hamb" onclick="toggleDrawer(false)">Cerrar</button>
+      </div>
+      <div class="links">
+        <a href="#tokenomics" onclick="toggleDrawer(false)">Tokenomics</a>
+        <a href="#buy" onclick="toggleDrawer(false)">Cómo comprar</a>
+        <a href="#roadmap" onclick="toggleDrawer(false)">Roadmap</a>
+        <a href="#faq" onclick="toggleDrawer(false)">FAQ</a>
+        <a href="#community" onclick="toggleDrawer(false)">Comunidad</a>
+        <a href="#buy" class="btn" style="margin-top:16px" onclick="toggleDrawer(false)">Buy $SAPPY</a>
+      </div>
+    </div>
+  </div>
+
   <!-- Header -->
   <header>
     <div class="container nav">
@@ -95,7 +123,10 @@
         <a href="#faq">FAQ</a>
         <a href="#community">Comunidad</a>
       </nav>
-      <a class="btn" href="#buy">Buy $SAPPY</a>
+      <div>
+        <a class="btn" href="#buy">Buy $SAPPY</a>
+        <button class="hamb" onclick="toggleDrawer(true)">☰ Menu</button>
+      </div>
     </div>
   </header>
 
@@ -104,9 +135,7 @@
     <section class="hero">
       <div class="halo"></div>
       <div class="container">
-        <div class="badges">
-          <span class="badge">Be early. Be rich. Be SAPPY.</span>
-        </div>
+        <span class="badge">Be early. Be rich. Be SAPPY.</span>
         <h1>
           La memecoin tropical que nació en Nayarit 🌴🐸
           <br><span style="background:linear-gradient(90deg,var(--brand1),var(--brand2));-webkit-background-clip:text;background-clip:text;color:transparent">
@@ -118,25 +147,35 @@
           construimos productos, experiencias y marca global.
         </p>
         <div class="actions">
-          <a class="btn" href="#buy">Buy on DEX</a>
-          <a class="btn ghost" href="#" target="_blank" rel="noreferrer">Litepaper (PDF)</a>
+          <a class="btn" href="#buy"><span class="icon">💼</span>Buy on DEX</a>
+          <a class="btn ghost" href="#" target="_blank" rel="noreferrer"><span class="icon">⬇️</span>Litepaper (PDF)</a>
         </div>
         <p class="muted" style="margin-top:10px;font-size:.85rem">
           *No es consejo financiero. Crypto es volátil. Haz tu propia investigación (DYOR).
         </p>
 
-        <div class="grid cols-3" style="margin-top:26px">
-          <div class="metric">
-            <div class="muted">Supply</div>
-            <div class="k">1,000,000,000</div>
+        <div class="grid cols-2" style="margin-top:26px;align-items:center">
+          <!-- Stat Card -->
+          <div class="card">
+            <div class="stat-card">
+              <img class="logo" src="assets/logo.svg" alt="SAPPY">
+              <div>
+                <div class="stat-title">$SAPPY</div>
+                <div class="muted">CA: <code>0xYOUR…ADDRESS</code></div>
+                <div class="grid cols-3" style="margin-top:12px;text-align:center">
+                  <div class="metric"><div class="muted">Supply</div><div class="k">1,000,000,000</div></div>
+                  <div class="metric"><div class="muted">Tax</div><div class="k">0% / 0%</div></div>
+                  <div class="metric"><div class="muted">Liquidity</div><div class="k">Burned 🔥</div></div>
+                </div>
+                <div style="margin-top:12px">
+                  <a href="#chart" class="pill"><span class="icon">📊</span>Ver gráfico</a>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="metric">
-            <div class="muted">Tax</div>
-            <div class="k">0% / 0%</div>
-          </div>
-          <div class="metric">
-            <div class="muted">Liquidity</div>
-            <div class="k">Burned 🔥</div>
+          <!-- Mascot -->
+          <div style="display:flex;justify-content:center">
+            <img src="assets/mascot.svg" alt="Mascota SAPPY" style="width:280px;height:auto;filter:drop-shadow(0 12px 24px rgba(0,0,0,.35))">
           </div>
         </div>
       </div>
@@ -151,6 +190,7 @@
           <div class="card"><strong>Crecimiento</strong><br>25% para marketing, listados y creadores (desbloqueo lineal).</div>
           <div class="card"><strong>Ecosistema</strong><br>25% para tesorería: experiencias turísticas, merch y utilidades.</div>
         </div>
+        <p class="muted" style="text-align:center;margin-top:10px">*Ajusta estos porcentajes si tu distribución final es distinta.</p>
       </div>
     </section>
 
@@ -161,7 +201,7 @@
         <div class="grid cols-4">
           <div class="card"><strong>1. Crea/Carga tu wallet</strong><br>Usa MetaMask/TrustWallet. Añade fondos (ETH/SOL/BNB).</div>
           <div class="card"><strong>2. Conecta al DEX</strong><br>Abre tu DEX (Raydium/Uniswap/Pancake) y conecta.</div>
-          <div class="card"><strong>3. Pega el contrato</strong><br>Usa el CA oficial para evitar tokens falsos: <code>0xYOUR…ADDRESS</code>.</div>
+          <div class="card"><strong>3. Pega el contrato</strong><br>Usa el CA de SAPPY para evitar tokens falsos: <code>0xYOUR…ADDRESS</code>.</div>
           <div class="card"><strong>4. Compra y HODL</strong><br>Selecciona cantidad, confirma y… ¡Bienvenido a la tropa SAPPY!</div>
         </div>
         <div class="actions" style="margin-top:18px">
@@ -177,21 +217,21 @@
         <h2>Roadmap</h2>
         <div class="grid cols-3">
           <div class="card"><strong>Fase 1 — Lanzamiento</strong>
-            <ul style="margin:.6rem 0 0; padding-left:1.1rem">
+            <ul class="list">
               <li>Sitio web y branding</li>
               <li>Lanzamiento DEX</li>
               <li>Liquidez inicial y verificación contrato</li>
             </ul>
           </div>
           <div class="card"><strong>Fase 2 — Comunidad</strong>
-            <ul style="margin:.6rem 0 0; padding-left:1.1rem">
+            <ul class="list">
               <li>Campañas con creadores</li>
               <li>Merch oficial</li>
               <li>Activaciones en Isla del Coral</li>
             </ul>
           </div>
           <div class="card"><strong>Fase 3 — Utilidad</strong>
-            <ul style="margin:.6rem 0 0; padding-left:1.1rem">
+            <ul class="list">
               <li>Experiencias token-gated (snorkel, tours)</li>
               <li>Stickers/mini-juegos</li>
               <li>Listados CEX (si aplica)</li>
@@ -201,33 +241,81 @@
       </div>
     </section>
 
-    <!-- Comunidad -->
-    <section id="community" style="background:rgba(12,22,40,.45);">
+    <!-- Chart placeholder -->
+    <section id="chart" style="background:rgba(12,22,40,.45);">
       <div class="container">
-        <h2>Únete a la comunidad</h2>
-        <div class="grid cols-3">
-          <div class="card"><strong>Twitter / X</strong><br>
-            <a href="https://x.com/SappyToken" target="_blank" rel="noreferrer">x.com/SappyToken</a>
-          </div>
-          <div class="card"><strong>Telegram</strong><br>
-            <a href="https://t.co/4qOoZ1Tm3z" target="_blank" rel="noreferrer">t.me/sappy</a>
-          </div>
-          <div class="card"><strong>Website / Blog</strong><br>
-            <a href="https://sappy.example.com" target="_blank" rel="noreferrer">sappy.example.com</a>
+        <h2>Precio en vivo (placeholder)</h2>
+        <div class="card" style="text-align:center;padding:40px">
+          <div style="border:1px dashed #2a445a;border-radius:14px;padding:28px;color:#a9c0d1">
+            Inserta aquí el iframe del gráfico (Dextools, Birdeye, GeckoTerminal, etc.)
           </div>
         </div>
       </div>
     </section>
 
+    <!-- Comunidad -->
+    <section id="community">
+      <div class="container">
+        <h2>Únete a la comunidad</h2>
+        <div class="grid cols-4">
+          <a class="card" href="https://x.com/SappyToken?t=QOD4RrLb9vHWslbtvTX6WA&s=09" target="_blank" rel="noreferrer">
+            <div class="pill"><span class="icon">🐦</span><strong>Twitter / X</strong></div>
+            <p class="muted" style="margin:.6rem 0 0">Anuncios, memes y alpha. Síguenos y comparte #BeSAPPY</p>
+          </a>
+          <a class="card" href="https://instagram.com/your_sappy" target="_blank" rel="noreferrer">
+            <div class="pill"><span class="icon">📸</span><strong>Instagram</strong></div>
+            <p class="muted" style="margin:.6rem 0 0">Reels, historias y la vibra tropical de Nayarit</p>
+          </a>
+          <a class="card" href="https://t.co/4qOoZ1Tm3z" target="_blank" rel="noreferrer">
+            <div class="pill"><span class="icon">✈️</span><strong>Telegram</strong></div>
+            <p class="muted" style="margin:.6rem 0 0">Chat en tiempo real con la comunidad SAPPY</p>
+          </a>
+          <a class="card" href="https://sappy.example.com" target="_blank" rel="noreferrer">
+            <div class="pill"><span class="icon">🌐</span><strong>Website / Blog</strong></div>
+            <p class="muted" style="margin:.6rem 0 0">Artículos, notas y el litepaper</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
     <!-- FAQ -->
-    <section id="faq">
+    <section id="faq" style="background:rgba(12,22,40,.45);">
       <div class="container">
         <h2>Preguntas frecuentes</h2>
         <div class="grid cols-2">
-          <div class="card"><strong>¿Es $SAPPY solo una broma?</strong><br>Somos diversión, sí, pero con ejecución real: marca, comunidad y utilidades relacionadas con turismo y experiencias.</div>
-          <div class="card"><strong>¿En qué red vive $SAPPY?</strong><br>Elige y actualiza aquí (por ejemplo, Solana o Ethereum). Añade el contrato correcto en esta página y en redes.</div>
-          <div class="card"><strong>¿Hay impuestos (buy/sell tax)?</strong><br>Actualmente 0%/0%. Si cambias, actualiza el sitio y comunica a la comunidad.</div>
-          <div class="card"><strong>¿Está auditado?</strong><br>Cuando tengas la auditoría, coloca el enlace y el sello aquí.</div>
+          <details class="faq"><summary>¿Es $SAPPY solo una broma?</summary>
+            <div>Somos diversión, sí, pero con ejecución real: marca, comunidad y utilidades sencillas relacionadas con turismo y experiencias.</div>
+          </details>
+          <details class="faq"><summary>¿En qué red vive $SAPPY?</summary>
+            <div>Elige y actualiza aquí (por ejemplo, Solana o Ethereum). Añade el contrato correcto en esta página y en redes.</div>
+          </details>
+          <details class="faq"><summary>¿Hay impuestos (buy/sell tax)?</summary>
+            <div>Actualmente configurado 0%/0%. Si cambias, actualiza el sitio y comunica a la comunidad.</div>
+          </details>
+          <details class="faq"><summary>¿Está auditado?</summary>
+            <div>Cuando tengas la auditoría, coloca el enlace y el sello aquí.</div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA final -->
+    <section>
+      <div class="container">
+        <div class="card" style="background:linear-gradient(90deg, rgba(6,78,59,.6), rgba(63,98,18,.5));">
+          <div class="grid cols-2" style="align-items:center">
+            <div>
+              <h2 style="margin:0">Be early. Be rich. Be SAPPY 🐸💰</h2>
+              <p class="muted" style="margin-top:6px">Únete hoy y construyamos una memecoin tropical con alcance global.</p>
+              <div class="actions" style="margin-top:12px">
+                <a href="#buy" class="btn ghost">Comprar $SAPPY</a>
+                <a href="#community" class="btn">Unirme a la comunidad</a>
+              </div>
+            </div>
+            <div style="display:flex;justify-content:center">
+              <img src="assets/mascot.svg" alt="SAPPY" width="200" height="200">
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -247,6 +335,10 @@
       </div>
     </div>
   </footer>
-  <script>document.getElementById('y').textContent=new Date().getFullYear()</script>
+
+  <script>
+    document.getElementById('y').textContent=new Date().getFullYear();
+    function toggleDrawer(open){document.getElementById('drawer').classList.toggle('open', !!open);}
+  </script>
 </body>
 </html>

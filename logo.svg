@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <linearGradient id="g1" x1="0" x2="1"><stop offset="0%" stop-color="#34d399"/><stop offset="100%" stop-color="#a3e635"/></linearGradient>
+    <linearGradient id="g2" x1="0" x2="1"><stop offset="0%" stop-color="#fde047"/><stop offset="100%" stop-color="#f59e0b"/></linearGradient>
+  </defs>
+  <circle cx="100" cy="100" r="98" fill="#052016"/>
+  <g transform="translate(20,30)">
+    <ellipse cx="80" cy="80" rx="80" ry="65" fill="url(#g1)" stroke="#064e3b" stroke-width="4"/>
+    <circle cx="50" cy="50" r="18" fill="#fff"/>
+    <circle cx="110" cy="50" r="18" fill="#fff"/>
+    <circle cx="53" cy="53" r="7" fill="#0f172a"/>
+    <circle cx="107" cy="53" r="7" fill="#0f172a"/>
+    <path d="M40 95 Q80 120 120 95" fill="none" stroke="#064e3b" stroke-width="6" stroke-linecap="round"/>
+    <g transform="translate(52,108)">
+      <ellipse cx="48" cy="24" rx="44" ry="22" fill="url(#g2)" stroke="#a16207" stroke-width="4"/>
+      <text x="48" y="31" text-anchor="middle" font-family="sans-serif" font-weight="900" font-size="22" fill="#92400e">$</text>
+    </g>
+  </g>
+</svg>
