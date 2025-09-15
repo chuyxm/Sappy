@@ -8,90 +8,27 @@
   <link rel="icon" href="assets/logo.svg">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
-    :root{
-      --bg1:#0b1324; --bg2:#020617; --panel:#0f172a;
-      --text:#eaf8f0; --muted:#a7b7c6;
-      --brand1:#86efac; --brand2:#bef264; --brand3:#34d399;
-      --card:#0e1a2f; --border:#1f2c42;
-      --ring:rgba(134,239,172,.35);
-      --shadow: 0 16px 40px rgba(0,0,0,.35);
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0; font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,'Helvetica Neue',Arial,'Noto Sans',sans-serif;
-      color:var(--text);
-      background:
-        radial-gradient(60% 40% at 50% -10%, rgba(134,239,172,.18), transparent 70%),
-        linear-gradient(to bottom, var(--bg1), var(--bg2));
-      line-height:1.65;
-    }
-    a{color:var(--brand1); text-decoration:none}
-    a:hover{text-decoration:underline}
-    .container{max-width:1160px;margin:0 auto;padding:0 22px}
-    .btn{
-      display:inline-flex;align-items:center;gap:.6rem;padding:.85rem 1.15rem;border-radius:16px;border:1px solid rgba(134,239,172,.35);
-      background:linear-gradient(90deg,var(--brand1),var(--brand2)); color:#062417; font-weight:800; box-shadow:0 12px 28px rgba(134,239,172,.2);
-    }
-    .btn.ghost{background:transparent;color:var(--text);border-color:#2a3a51}
-    /* Header */
-    header{position:sticky; top:0; z-index:1000; backdrop-filter:saturate(160%) blur(8px); background:rgba(10,18,36,.65); border-bottom:1px solid rgba(134,239,172,.15)}
-    .nav{display:flex;align-items:center;justify-content:space-between;min-height:70px}
-    .brand{display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:.4px}
-    .brand img{width:38px;height:38px}
-    .brand span{background:linear-gradient(90deg,var(--brand1),var(--brand2));-webkit-background-clip:text;background-clip:text;color:transparent}
-    .menu{display:none;gap:12px;align-items:center}
-    .menu a{color:#d9fbe7;font-weight:600;opacity:.9}
-    .menu a:hover{opacity:1}
-    .hamb{display:inline-flex;gap:8px;align-items:center;padding:.5rem .75rem;border:1px solid #274057;border-radius:12px;background:transparent;color:#e6f7ef}
-    @media(min-width:900px){.menu{display:flex}.hamb{display:none}}
-    /* mobile drawer */
-    .drawer{position:fixed;inset:0;background:rgba(3,6,12,.9);display:none;padding:24px}
-    .drawer.open{display:block}
-    .drawer .links{display:flex;flex-direction:column;gap:14px;margin-top:18px}
-    /* Sections */
-    section{padding:72px 0}
-    h1{font-size:clamp(34px,5vw,56px);line-height:1.1;margin:12px 0 10px}
-    h2{font-size:clamp(24px,3.2vw,34px);margin:0 0 20px;color:var(--brand2)}
-    p.lead{max-width:760px;color:#d3e7de;margin:12px 0 0}
-    .halo{position:absolute;inset:-140px -60px auto -60px;height:300px;pointer-events:none;
-      background:radial-gradient(60% 60% at 50% 0, rgba(134,239,172,.25), transparent 70%);
-    }
-    .hero{position:relative;overflow:hidden}
-    .badges{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0 0}
-    .badge{font-size:.8rem;padding:.35rem .6rem;border:1px solid #234158;border-radius:999px;background:rgba(23,36,58,.45);color:#b7e9d0}
-    .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}
-    .muted{color:var(--muted);font-size:.95rem}
-    /* Grid + card */
-    .grid{display:grid;gap:18px}
-    @media(min-width:900px){
-      .cols-2{grid-template-columns:repeat(2,1fr)}
-      .cols-3{grid-template-columns:repeat(3,1fr)}
-      .cols-4{grid-template-columns:repeat(4,1fr)}
-    }
-    .card{background:linear-gradient(180deg, rgba(20,32,54,.8), rgba(12,22,40,.75)); border:1px solid var(--border); border-radius:20px; padding:20px; box-shadow:var(--shadow)}
-    .metric{display:grid;place-items:center;padding:18px;border-radius:16px;background:rgba(20,32,54,.55);border:1px solid #21314a}
-    .metric .k{font-size:1.25rem;font-weight:800}
-    /* List with check */
-    .list{padding-left:1.1rem;margin:.6rem 0 0}
-    .list li{margin:.4rem 0}
-    /* FAQ (details) */
-    details.faq{border:1px solid var(--border);border-radius:16px;background:rgba(18,28,48,.6);padding:.2rem .8rem}
-    details.faq summary{cursor:pointer;list-style:none;padding:1rem 0;font-weight:600}
-    details.faq[open]{outline:2px solid rgba(134,239,172,.25)}
-    /* Footer */
-    footer{border-top:1px solid var(--border);background:rgba(10,18,36,.6);padding:22px 0;color:#9bb0c3}
-    footer .links a{color:#9bb0c3;margin-left:14px}
-    /* Icon pills */
-    .pill{display:inline-flex;align-items:center;gap:10px}
-    .icon{width:20px;height:20px;display:inline-block}
-    .logo{width:80px;height:80px}
-    .stat-card{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:center}
-    .stat-title{font-size:1.25rem;font-weight:800}
+    :root{--bg1:#0b1324;--bg2:#020617;--text:#eaf8f0;--muted:#a7b7c6;--brand1:#86efac;--brand2:#bef264;--border:#1f2c42;--shadow:0 16px 40px rgba(0,0,0,.35)}
+    *{box-sizing:border-box} html,body{height:100%} body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,'Helvetica Neue',Arial,'Noto Sans',sans-serif;color:var(--text);
+    background:radial-gradient(60% 40% at 50% -10%, rgba(134,239,172,.18), transparent 70%),linear-gradient(to bottom,#0b1324,#020617);line-height:1.65} a{color:var(--brand1);text-decoration:none} a:hover{text-decoration:underline}
+    .container{max-width:1160px;margin:0 auto;padding:0 22px} .btn{display:inline-flex;align-items:center;gap:.6rem;padding:.85rem 1.15rem;border-radius:16px;border:1px solid rgba(134,239,172,.35);
+    background:linear-gradient(90deg,var(--brand1),var(--brand2));color:#062417;font-weight:800;box-shadow:0 12px 28px rgba(134,239,172,.2)} .btn.ghost{background:transparent;color:var(--text);border-color:#2a3a51}
+    header{position:sticky;top:0;z-index:1000;backdrop-filter:saturate(160%) blur(8px);background:rgba(10,18,36,.65);border-bottom:1px solid rgba(134,239,172,.15)} .nav{display:flex;align-items:center;justify-content:space-between;min-height:70px}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:.4px} .brand img{width:38px;height:38px;border-radius:12px;box-shadow:0 4px 16px rgba(0,0,0,.35)} .brand span{background:linear-gradient(90deg,var(--brand1),var(--brand2));-webkit-background-clip:text;background-clip:text;color:transparent}
+    .menu{display:none;gap:12px;align-items:center} .menu a{color:#d9fbe7;font-weight:600;opacity:.9} .menu a:hover{opacity:1} .hamb{display:inline-flex;gap:8px;align-items:center;padding:.5rem .75rem;border:1px solid #274057;border-radius:12px;background:transparent;color:#e6f7ef}
+    @media(min-width:900px){.menu{display:flex} .hamb{display:none}} .drawer{position:fixed;inset:0;background:rgba(3,6,12,.9);display:none;padding:24px} .drawer.open{display:block} .drawer .links{display:flex;flex-direction:column;gap:14px;margin-top:18px}
+    section{padding:72px 0} h1{font-size:clamp(34px,5vw,56px);line-height:1.1;margin:12px 0 10px} h2{font-size:clamp(24px,3.2vw,34px);margin:0 0 20px;color:#bef264} p.lead{max-width:760px;color:#d3e7de;margin:12px 0 0}
+    .halo{position:absolute;inset:-140px -60px auto -60px;height:300px;pointer-events:none;background:radial-gradient(60% 60% at 50% 0, rgba(134,239,172,.25), transparent 70%)} .hero{position:relative;overflow:hidden}
+    .badge{font-size:.8rem;padding:.35rem .6rem;border:1px solid #234158;border-radius:999px;background:rgba(23,36,58,.45);color:#b7e9d0} .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px} .muted{color:var(--muted);font-size:.95rem}
+    .grid{display:grid;gap:18px} @media(min-width:900px){.cols-2{grid-template-columns:repeat(2,1fr)} .cols-3{grid-template-columns:repeat(3,1fr)} .cols-4{grid-template-columns:repeat(4,1fr)}}
+    .card{background:linear-gradient(180deg, rgba(20,32,54,.8), rgba(12,22,40,.75));border:1px solid var(--border);border-radius:20px;padding:20px;box-shadow:0 16px 40px rgba(0,0,0,.35)}
+    .metric{display:grid;place-items:center;padding:18px;border-radius:16px;background:rgba(20,32,54,.55);border:1px solid #21314a} .metric .k{font-size:1.25rem;font-weight:800}
+    .list{padding-left:1.1rem;margin:.6rem 0 0} .list li{margin:.4rem 0} details.faq{border:1px solid var(--border);border-radius:16px;background:rgba(18,28,48,.6);padding:.2rem .8rem} details.faq summary{cursor:pointer;list-style:none;padding:1rem 0;font-weight:600} details.faq[open]{outline:2px solid rgba(134,239,172,.25)}
+    footer{border-top:1px solid var(--border);background:rgba(10,18,36,.6);padding:22px 0;color:#9bb0c3} footer .links a{color:#9bb0c3;margin-left:14px}
+    .pill{display:inline-flex;align-items:center;gap:10px} .icon{width:20px;height:20px;display:inline-block} .logo-big{width:280px;height:auto;border-radius:24px;box-shadow:0 18px 36px rgba(0,0,0,.45)}
   </style>
 </head>
 <body>
-  <!-- Drawer mobile -->
   <div id="drawer" class="drawer">
     <div class="container">
       <div style="display:flex;align-items:center;justify-content:space-between">
@@ -109,7 +46,6 @@
     </div>
   </div>
 
-  <!-- Header -->
   <header>
     <div class="container nav">
       <div class="brand">
@@ -131,57 +67,39 @@
   </header>
 
   <main>
-    <!-- HERO -->
     <section class="hero">
       <div class="halo"></div>
       <div class="container">
         <span class="badge">Be early. Be rich. Be SAPPY.</span>
-        <h1>
-          La memecoin tropical que nació en Nayarit 🌴🐸
-          <br><span style="background:linear-gradient(90deg,var(--brand1),var(--brand2));-webkit-background-clip:text;background-clip:text;color:transparent">
-            y quiere conquistar el mundo
-          </span>
-        </h1>
-        <p class="lead">
-          $SAPPY es diversión con propósito: comunidad, buen humor y una visión clara. Sin promesas vacías:
-          construimos productos, experiencias y marca global.
-        </p>
+        <h1>La memecoin tropical que nació en Nayarit 🌴🐸<br><span style="background:linear-gradient(90deg,var(--brand1),var(--brand2));-webkit-background-clip:text;background-clip:text;color:transparent">y quiere conquistar el mundo</span></h1>
+        <p class="lead">$SAPPY es diversión con propósito: comunidad, buen humor y una visión clara. Sin promesas vacías: construimos productos, experiencias y marca global.</p>
         <div class="actions">
-          <a class="btn" href="#buy"><span class="icon">💼</span>Buy on DEX</a>
-          <a class="btn ghost" href="#" target="_blank" rel="noreferrer"><span class="icon">⬇️</span>Litepaper (PDF)</a>
+          <a class="btn" href="#buy">💼 Buy on DEX</a>
+          <a class="btn ghost" href="#" target="_blank" rel="noreferrer">⬇️ Litepaper (PDF)</a>
         </div>
-        <p class="muted" style="margin-top:10px;font-size:.85rem">
-          *No es consejo financiero. Crypto es volátil. Haz tu propia investigación (DYOR).
-        </p>
+        <p class="muted" style="margin-top:10px;font-size:.85rem">*No es consejo financiero. Crypto es volátil. Haz tu propia investigación (DYOR).</p>
 
         <div class="grid cols-2" style="margin-top:26px;align-items:center">
-          <!-- Stat Card -->
           <div class="card">
-            <div class="stat-card">
-              <img class="logo" src="assets/logo.svg" alt="SAPPY">
+            <div style="display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:center">
+              <img src="assets/logo.svg" alt="SAPPY" width="80" height="80" style="border-radius:14px;box-shadow:0 10px 22px rgba(0,0,0,.35)">
               <div>
-                <div class="stat-title">$SAPPY</div>
+                <div style="font-size:1.25rem;font-weight:800">$SAPPY</div>
                 <div class="muted">CA: <code>0xYOUR…ADDRESS</code></div>
                 <div class="grid cols-3" style="margin-top:12px;text-align:center">
                   <div class="metric"><div class="muted">Supply</div><div class="k">1,000,000,000</div></div>
                   <div class="metric"><div class="muted">Tax</div><div class="k">0% / 0%</div></div>
                   <div class="metric"><div class="muted">Liquidity</div><div class="k">Burned 🔥</div></div>
                 </div>
-                <div style="margin-top:12px">
-                  <a href="#chart" class="pill"><span class="icon">📊</span>Ver gráfico</a>
-                </div>
+                <div style="margin-top:12px"><a href="#chart" class="pill"><span class="icon">📊</span>Ver gráfico</a></div>
               </div>
             </div>
           </div>
-          <!-- Mascot -->
-          <div style="display:flex;justify-content:center">
-            <img src="assets/mascot.svg" alt="Mascota SAPPY" style="width:280px;height:auto;filter:drop-shadow(0 12px 24px rgba(0,0,0,.35))">
-          </div>
+          <div style="display:flex;justify-content:center"><img src="assets/logo.svg" alt="Mascota SAPPY" class="logo-big"></div>
         </div>
       </div>
     </section>
 
-    <!-- Tokenomics -->
     <section id="tokenomics">
       <div class="container">
         <h2>Tokenomics claros y simples</h2>
@@ -194,7 +112,6 @@
       </div>
     </section>
 
-    <!-- Cómo comprar -->
     <section id="buy" style="background:rgba(12,22,40,.45);">
       <div class="container">
         <h2>Cómo comprar $SAPPY</h2>
@@ -211,49 +128,32 @@
       </div>
     </section>
 
-    <!-- Roadmap -->
     <section id="roadmap">
       <div class="container">
         <h2>Roadmap</h2>
         <div class="grid cols-3">
           <div class="card"><strong>Fase 1 — Lanzamiento</strong>
-            <ul class="list">
-              <li>Sitio web y branding</li>
-              <li>Lanzamiento DEX</li>
-              <li>Liquidez inicial y verificación contrato</li>
-            </ul>
+            <ul class="list"><li>Sitio web y branding</li><li>Lanzamiento DEX</li><li>Liquidez inicial y verificación contrato</li></ul>
           </div>
           <div class="card"><strong>Fase 2 — Comunidad</strong>
-            <ul class="list">
-              <li>Campañas con creadores</li>
-              <li>Merch oficial</li>
-              <li>Activaciones en Isla del Coral</li>
-            </ul>
+            <ul class="list"><li>Campañas con creadores</li><li>Merch oficial</li><li>Activaciones en Isla del Coral</li></ul>
           </div>
           <div class="card"><strong>Fase 3 — Utilidad</strong>
-            <ul class="list">
-              <li>Experiencias token-gated (snorkel, tours)</li>
-              <li>Stickers/mini-juegos</li>
-              <li>Listados CEX (si aplica)</li>
-            </ul>
+            <ul class="list"><li>Experiencias token-gated (snorkel, tours)</li><li>Stickers/mini-juegos</li><li>Listados CEX (si aplica)</li></ul>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Chart placeholder -->
     <section id="chart" style="background:rgba(12,22,40,.45);">
       <div class="container">
         <h2>Precio en vivo (placeholder)</h2>
         <div class="card" style="text-align:center;padding:40px">
-          <div style="border:1px dashed #2a445a;border-radius:14px;padding:28px;color:#a9c0d1">
-            Inserta aquí el iframe del gráfico (Dextools, Birdeye, GeckoTerminal, etc.)
-          </div>
+          <div style="border:1px dashed #2a445a;border-radius:14px;padding:28px;color:#a9c0d1">Inserta aquí el iframe del gráfico (Dextools, Birdeye, GeckoTerminal, etc.)</div>
         </div>
       </div>
     </section>
 
-    <!-- Comunidad -->
     <section id="community">
       <div class="container">
         <h2>Únete a la comunidad</h2>
@@ -278,7 +178,6 @@
       </div>
     </section>
 
-    <!-- FAQ -->
     <section id="faq" style="background:rgba(12,22,40,.45);">
       <div class="container">
         <h2>Preguntas frecuentes</h2>
@@ -298,47 +197,18 @@
         </div>
       </div>
     </section>
-
-    <!-- CTA final -->
-    <section>
-      <div class="container">
-        <div class="card" style="background:linear-gradient(90deg, rgba(6,78,59,.6), rgba(63,98,18,.5));">
-          <div class="grid cols-2" style="align-items:center">
-            <div>
-              <h2 style="margin:0">Be early. Be rich. Be SAPPY 🐸💰</h2>
-              <p class="muted" style="margin-top:6px">Únete hoy y construyamos una memecoin tropical con alcance global.</p>
-              <div class="actions" style="margin-top:12px">
-                <a href="#buy" class="btn ghost">Comprar $SAPPY</a>
-                <a href="#community" class="btn">Unirme a la comunidad</a>
-              </div>
-            </div>
-            <div style="display:flex;justify-content:center">
-              <img src="assets/mascot.svg" alt="SAPPY" width="200" height="200">
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
   </main>
 
-  <!-- Footer -->
   <footer>
     <div class="container" style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
       <div style="display:flex;align-items:center;gap:10px">
-        <img src="assets/logo.svg" alt="SAPPY" width="28" height="28">
+        <img src="assets/logo.svg" alt="SAPPY" width="28" height="28" style="border-radius:6px">
         <span>© <span id="y"></span> SAPPY. All rights reserved.</span>
       </div>
-      <div class="links">
-        <a href="#">Términos</a>
-        <a href="#">Privacidad</a>
-        <a href="#">Contacto</a>
-      </div>
+      <div class="links"><a href="#">Términos</a><a href="#">Privacidad</a><a href="#">Contacto</a></div>
     </div>
   </footer>
 
-  <script>
-    document.getElementById('y').textContent=new Date().getFullYear();
-    function toggleDrawer(open){document.getElementById('drawer').classList.toggle('open', !!open);}
-  </script>
+  <script>document.getElementById('y').textContent=new Date().getFullYear();function toggleDrawer(open){document.getElementById('drawer').classList.toggle('open', !!open);}</script>
 </body>
 </html>
